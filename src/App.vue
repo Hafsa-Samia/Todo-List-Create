@@ -15,6 +15,7 @@
       v-on:is-completed="completedTask"
       v-on:remove-task="deletedTask"
       v-on:clear-completed="removeAllCompletedTasks"
+      v-on:add-priority="addPriorityToTask"
     />
   </div>
 </template>
@@ -41,6 +42,7 @@ export default {
             hour: "numeric",
             minute: "numeric",
           }),
+          priority : false,
         },
         {
           id: 2,
@@ -52,6 +54,7 @@ export default {
             hour: "numeric",
             minute: "numeric",
           }),
+          priority : false,
         },
         {
           id: 3,
@@ -63,6 +66,7 @@ export default {
             hour: "numeric",
             minute: "numeric",
           }),
+          priority : false,
         },
       ],
     };
@@ -119,6 +123,22 @@ export default {
       for (var i = 0; i < newTasksList.length; i++) {
         if (newTasksList[i].id == id) {
           newTasksList.splice(i, 1);
+        }
+      }
+
+      this.tasks = newTasksList;
+
+      //console.log('deleted',newTasksList);
+    },
+
+
+    addPriorityToTask(id) {
+      let newTasksList = [];
+      newTasksList = this.tasks;
+
+      for (var i = 0; i < newTasksList.length; i++) {
+        if (newTasksList[i].id == id) {
+          newTasksList[i].priority = !newTasksList[i].priority
         }
       }
 
